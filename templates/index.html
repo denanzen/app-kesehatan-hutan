@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Kesehatan Hutan</title>
+    <!-- Tautkan file CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Uji Kesehatan Hutan</h1>
+      <form action="/predict" method="post">
+        <label for="kesehatan_pohon">Kesehatan Pohon (1-5):</label>
+        <input
+          type="number"
+          name="kesehatan_pohon"
+          id="kesehatan_pohon"
+          min="1"
+          max="5"
+          required
+        />
+
+        <label for="kondisi_tanah">Kondisi Tanah (0 atau 1):</label>
+        <input
+          type="number"
+          name="kondisi_tanah"
+          id="kondisi_tanah"
+          min="0"
+          max="1"
+          required
+        />
+
+        <label for="kualitas_air">Kualitas Air (0 atau 1):</label>
+        <input
+          type="number"
+          name="kualitas_air"
+          id="kualitas_air"
+          min="0"
+          max="1"
+          required
+        />
+
+        <label for="tingkat_gangguan">Tingkat Gangguan (1-5):</label>
+        <input
+          type="number"
+          name="tingkat_gangguan"
+          id="tingkat_gangguan"
+          min="1"
+          max="5"
+          required
+        />
+
+        <button type="submit">Uji Kesehatan</button>
+      </form>
+
+      <div id="result">
+        {% if result %}
+        <h2>Hasil Prediksi: {{ result }}</h2>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
